@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "git-semforcer"
-  spec.version       = "1.0.0"
+  spec.version       = "1.0.1"
   spec.executables   = %w(git-semforcer)
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "semver", "~> 1.0"
+  spec.add_dependency "semver2", "~> 3.4"
   spec.add_dependency "thor", "~> 0.19"
   spec.add_development_dependency "bundler", "~> 1.10"
 

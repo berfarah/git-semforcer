@@ -2,6 +2,7 @@
 require "semver"
 
 Dir.chdir("..") if ENV["GIT_DIR"] == "."
+$stdin.reopen(File.open("/dev/tty", "r"))
 
 class SemVer
   def initialize
@@ -19,8 +20,8 @@ class SemVer
 
   def increment
     puts "How big of an increment is this?\n[#{inc_opts.join('|')}]"
-    puts inc_opts.include?(inc = gets.chomp)
-    if inc_opts.include?(inc)
+    if (inc = gets.chomp) == "none" then exit(0)
+    elsif inc_opts.include?(inc)
       system("semver inc #{inc} && git add .semver")
     else
       puts "Invalid entry:"; increment
@@ -47,7 +48,7 @@ class SemVer
   private
 
     def inc_opts
-      %w(patch minor major)
+      %w(patch minor major none)
     end
 end
 
@@ -82,7 +83,7 @@ end
 s = SemVer.new
 if    s.added?
 elsif s.none?     then s.init
-elsif s.modified? then s.add
+elsif s.modified? then s.add_changes
 else  s.increment
 end
 
@@ -91,3 +92,5 @@ if (g = GemSpec.new) && g.exist?
   g.replace
   g.add
 end
+
+$stdin.close
