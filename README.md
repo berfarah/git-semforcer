@@ -26,7 +26,17 @@ git semforcer destroy
 # removes said hook
 ```
 
+You are prompted before your commit goes through:
+```
+$ git add .
+$ git commit
+Choose a version increment for this commit:
+[patch|minor|major|none]
+$ none
+# Nothing happened
+```
+
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/git-semforcer.
+Bug reports and pull requests are welcome on GitHub at https://github.com/berfarah/git-semforcer.
 

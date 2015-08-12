@@ -2,13 +2,14 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "git-semforcer"
-  spec.version       = "1.0.1"
+  spec.version       = "1.1.0"
   spec.executables   = %w(git-semforcer)
   spec.require_paths = ["lib"]
 
   spec.add_dependency "semver2", "~> 3.4"
   spec.add_dependency "thor", "~> 0.19"
   spec.add_development_dependency "bundler", "~> 1.10"
+  spec.add_development_dependency "rake", "~> 10.4"
 
   spec.summary       = "A small gem to enforce semver versioning before commits"
   spec.description   = "A tool that generates a pre-commit hook to enforce "\
@@ -19,5 +20,5 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/berfarah/git-semforcer"
   spec.license       = "MIT"
 
-  spec.files         = Dir["{bin,lib,spec}/**/*", "README*", "LICENSE*"]
+  spec.files         = Dir["{bin,lib,spec}/**/*", "README*", "LICENSE*", "Rakefile"]
 end

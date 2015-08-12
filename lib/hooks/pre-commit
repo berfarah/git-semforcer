@@ -1,96 +1,14 @@
 #!/usr/bin/env ruby
-require "semver"
+require "git-semforcer"
 
+# Make sure we're not inside of .git
 Dir.chdir("..") if ENV["GIT_DIR"] == "."
+
+# Reopen STDIN for user response
 $stdin.reopen(File.open("/dev/tty", "r"))
 
-class SemVer
-  def initialize
-    @semver = `git status -z .semver`.strip
-  end
+# Enforce our semver
+GitSemforcer::Semver.new.enforce
 
-  def add_changes
-    puts ".semver was modified. Add the file to the commit?\n[y|n]"
-    case gets.chomp
-    when /^y$/i then system("git add .semver")
-    when /^n$/i then exit(1)
-    else puts "Invalid entry:"; add_changes
-    end
-  end
-
-  def increment
-    puts "How big of an increment is this?\n[#{inc_opts.join('|')}]"
-    if (inc = gets.chomp) == "none" then exit(0)
-    elsif inc_opts.include?(inc)
-      system("semver inc #{inc} && git add .semver")
-    else
-      puts "Invalid entry:"; increment
-    end
-  end
-
-  def init
-    puts "Creating a new Semver file"
-    system "semver init && semver inc patch && git add .semver"
-  end
-
-  def none?
-    @semver.empty?
-  end
-
-  def added?
-    @semver =~ /(M|A)  .semver/
-  end
-
-  def modified?
-    @semver =~ /(M|A) .semver/
-  end
-
-  private
-
-    def inc_opts
-      %w(patch minor major none)
-    end
-end
-
-class GemSpec
-  def initialize
-    @path = Dir["*.gemspec"].first
-  end
-
-  def exist?
-    File.exist?(@path)
-  end
-
-  def contents
-    @contents ||= File.read(@path)
-  end
-
-  def set_version
-    contents.sub!(/(\.version\s+=\s+).+$/,
-                  '\1"' + SemVer.find.to_s[1..-1] + '"')
-  end
-
-  def replace
-    puts "Changing Gemspec version"
-    File.write(@path, contents)
-  end
-
-  def add
-    system "git add #{@path}"
-  end
-end
-
-s = SemVer.new
-if    s.added?
-elsif s.none?     then s.init
-elsif s.modified? then s.add_changes
-else  s.increment
-end
-
-if (g = GemSpec.new) && g.exist?
-  g.set_version
-  g.replace
-  g.add
-end
-
-$stdin.close
+# Little addon - update the Gemspec file
+GitSemforcer::Gemspec.new.update
