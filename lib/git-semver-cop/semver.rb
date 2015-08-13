@@ -1,5 +1,5 @@
 # This is not the best example of "Single responsibility principle", is it?
-module GitSemforcer
+module GitSemverCop
   # Class for modifying and detecting semver
   class Semver
     def initialize

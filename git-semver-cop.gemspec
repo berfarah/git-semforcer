@@ -1,9 +1,9 @@
 # coding: utf-8
 
 Gem::Specification.new do |spec|
-  spec.name          = "git-semforcer"
+  spec.name          = "git-semver-cop"
   spec.version       = "1.1.0"
-  spec.executables   = %w(git-semforcer)
+  spec.executables   = %w(git-semver-cop)
   spec.require_paths = ["lib"]
 
   spec.add_dependency "semver2", "~> 3.4"
@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
 
   spec.authors       = ["Bernardo Farah"]
   spec.email         = ["ber@bernardo.me"]
-  spec.homepage      = "https://github.com/berfarah/git-semforcer"
+  spec.homepage      = "https://github.com/berfarah/git-semver-cop"
   spec.license       = "MIT"
 
   spec.files         = Dir["{bin,lib,spec}/**/*", "README*", "LICENSE*", "Rakefile"]

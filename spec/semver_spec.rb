@@ -1,4 +1,4 @@
-describe GitSemforcer::Semver do
+describe GitSemverCop::Semver do
   subject { described_class.new }
   before do
     allow_any_instance_of(Kernel).to receive(:puts).and_return("")

@@ -1,3 +1,0 @@
-#!/usr/bin/env ruby
-require "git-semforcer/generator"
-GitSemforcer::Generator.start

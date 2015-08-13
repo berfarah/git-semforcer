@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require "git-semforcer"
+require "git-semver-cop"
 
 # Make sure we're not inside of .git
 Dir.chdir("..") if ENV["GIT_DIR"] == "."
@@ -8,7 +8,7 @@ Dir.chdir("..") if ENV["GIT_DIR"] == "."
 $stdin.reopen(File.open("/dev/tty", "r"))
 
 # Enforce our semver
-GitSemforcer::Semver.new.enforce
+GitSemverCop::Semver.new.enforce
 
-# Little addon - update the Gemspec file
-GitSemforcer::Gemspec.new.update
+# Update version files (gemspec, package.json)
+GitSemverCop.update_version_files

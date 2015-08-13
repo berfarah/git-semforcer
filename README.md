@@ -1,11 +1,11 @@
-# GitSemforcer
+# GitSemverCop
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'git-semforcer'
+gem 'git-semver-cop'
 ```
 
 And then execute:
@@ -14,15 +14,15 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install git-semforcer
+    $ gem install git-semver-cop
 
 ## Usage
 
 ```
-git semforcer init
+git semver-cop init
 # makes a pre-commit hook that enforces semantic versioning
 
-git semforcer destroy
+git semver-cop destroy
 # removes said hook
 ```
 
@@ -38,5 +38,5 @@ $ none
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/berfarah/git-semforcer.
+Bug reports and pull requests are welcome on GitHub at https://github.com/berfarah/git-semver-cop.
 

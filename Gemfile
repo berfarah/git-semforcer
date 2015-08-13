@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in git-semforcer.gemspec
+# Specify your gem's dependencies in git-semver-cop.gemspec
 gemspec
 
 group :test do

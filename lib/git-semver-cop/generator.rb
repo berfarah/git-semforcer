@@ -1,6 +1,6 @@
 require "thor"
 
-module GitSemforcer
+module GitSemverCop
   # Our generator that creates the commit hook
   class Generator < Thor
     include Thor::Actions
