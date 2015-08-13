@@ -10,7 +10,18 @@ module GitSemverCop
     end
 
     def self.destination
-      File.expand_path(".git/hooks/pre-commit", Dir.pwd)
+      # For submodules which have a .git file that points to the module
+      hooks_dir = "/hooks/pre-commit"
+
+      if File.file?(".git")
+        File.expand_path(submodule_git + hooks_dir, Dir.pwd)
+      else
+        File.expand_path(".git" + hooks_dir, Dir.pwd)
+      end
+    end
+
+    def self.submodule_git
+      File.read(".git").strip[/^(gitdir: )(.+)$/, 2]
     end
 
     desc "init", "Generates a pre-commit hook to ensure you update your .semver"
