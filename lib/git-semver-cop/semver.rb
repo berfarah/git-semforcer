@@ -22,9 +22,11 @@ module GitSemverCop
     end
 
     def ask_increment
-      puts "How big of an increment is this?\n[#{inc_opts.join('|')}]"
+      puts "How big of an increment is this? (semver: M.m.p)\n"\
+           "[n] none (default)\n[p] patch\n[m] minor\n[M] Major"
       inc = gets.chomp
-      inc_opts.include?(inc) ? semver_inc(inc) : exit(0)
+      val = %w(none patch minor Major).find { |v| v =~ /^#{inc[0]}/ }
+      val == "none" ? exit(0) : semver_inc(val)
     end
 
     # #
@@ -42,12 +44,6 @@ module GitSemverCop
     end
 
     private
-
-      # #
-      # Valid increment options
-      def inc_opts
-        %w(patch minor major none)
-      end
 
       # #
       # Command line operations
