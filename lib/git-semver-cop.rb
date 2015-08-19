@@ -8,6 +8,7 @@ module GitSemverCop
     GitSemverCop.constants.each do |klass_sym|
       klass = GitSemverCop.const_get(klass_sym)
       next unless klass < GitSemverCop::VersionFile
+      p klass
       klass.exist? && klass.new.update
     end
   end

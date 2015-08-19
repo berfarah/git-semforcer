@@ -6,7 +6,7 @@ module GitSemverCop
       attr_accessor :path
 
       def exist?
-        File.exist?(path)
+        path && File.exist?(path)
       end
     end
 

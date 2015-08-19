@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "git-semver-cop"
-  spec.version       = "1.4.0"
+  spec.version       = "1.4.1"
   spec.executables   = %w(git-semver-cop)
   spec.require_paths = ["lib"]
 
